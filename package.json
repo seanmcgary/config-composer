@@ -1,0 +1,24 @@
+{
+  "name": "config-composer",
+  "version": "0.1.0",
+  "description": "compose your config",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanmcgary/config-composer.git"
+  },
+  "keywords": [
+    "config",
+    "composer",
+    "environment"
+  ],
+  "author": "Sean McGary <sean@seanmcgary.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seanmcgary/config-composer/issues"
+  },
+  "homepage": "https://github.com/seanmcgary/config-composer#readme"
+}
