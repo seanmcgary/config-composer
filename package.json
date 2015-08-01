@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/seanmcgary/config-composer/issues"
   },
-  "homepage": "https://github.com/seanmcgary/config-composer#readme"
+  "homepage": "https://github.com/seanmcgary/config-composer#readme",
+  "dependencies": {
+    "lodash": "^3.10.0"
+  }
 }
