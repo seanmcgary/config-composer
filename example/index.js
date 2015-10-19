@@ -7,3 +7,4 @@ var Composer = new CC.Composer({
 Composer.loadConfig('stuff', 'exampleConfig');
 
 console.log(Composer.getConfig());
+console.log(Composer.getRequiredEnvs());
