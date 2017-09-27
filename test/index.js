@@ -87,4 +87,24 @@ describe('ConfigComposer', function(){
 		done();
 	});
 
+	it('should load a config as a function', function(done) {
+		const c = function(Config, Override) {
+			return new Config({
+				test: 'foo'
+			});
+		};
+
+		var Composer = new CC.Composer({
+			configPath: path.resolve(__dirname + '/config'),
+			envPrefix: 'PREFIX_'
+		});
+
+		Composer.setConfig(c, 'functionEnv');
+
+		var config = Composer.getConfig();
+		assert.ok(config.functionEnv);
+		assert.equal(config.functionEnv.test, 'foo');
+		done();
+	});
+
 });
