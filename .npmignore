@@ -1,0 +1,7 @@
+./src
+./test
+Makefile
+tsconfig.json
+tslint.json
+./example
+./idea

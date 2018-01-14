@@ -1,0 +1,28 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "indent": [true, "tabs"],
+        "object-literal-key-quotes": [true, "as-needed"],
+        "quotemark": [true, "single"],
+        "ordered-imports": false,
+        "interface-name": false,
+        "no-angle-bracket-type-assertion": false,
+        "object-literal-sort-keys": false,
+        "trailing-comma": false,
+        "whitespace": [true,
+            "check-branch",
+            "check-operator",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-rest-spread",
+            "check-preblock"
+        ],
+        "no-any": true
+    },
+    "rulesDirectory": []
+}

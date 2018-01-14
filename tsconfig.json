@@ -1,0 +1,48 @@
+{
+	"compilerOptions": {
+		"allowJs": false,
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": ".",
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"jsx": "react",
+		"lib": [
+			"es2017",
+			"esnext"
+		],
+		"moduleResolution": "node",
+		"module": "none",
+		"noEmitHelpers": true,
+		"paths": {
+			"*": [
+				"./types/*",
+				"*"
+			]
+		},
+		"typeRoots": [
+			"./node_modules/@types"
+		],
+		"types": [
+			"lodash",
+			"node",
+			"mocha"
+
+		],
+		"skipDefaultLibCheck": true,
+		"sourceMap": false,
+		"target": "es2017",
+		"declaration": true,
+		"rootDir": ".",
+		"outDir": "dist",
+		"noImplicitAny": true
+	},
+	"exclude": [
+		"dist",
+		"node_modules",
+		"test",
+		"app/**/*"
+	],
+	"include": [
+		"src/**/*"
+	]
+}
