@@ -7,4 +7,4 @@ clean:
 	rm -rf dist || true
 
 publish: clean all
-	npm publish
+	npm publish --access=public

@@ -6,9 +6,47 @@ export interface OverrideInterface {
 	forceEnv?: boolean;
 }
 
-export type OverrideFn = (data: OverrideInterface) => OverrideInterface;
+export type OverrideFn = (data: OverrideInterface) => OverrideValue;
 
-export function Override(data: OverrideInterface){
+export class OverrideValue {
+	public value: any;
+	constructor(value: any) {
+		this.value = value;
+	}
+
+	string(): string {
+		if (typeof this.value.toString === 'function') {
+			return this.value.toString();
+		}
+
+		return `${this.value}`;
+	}
+
+	boolean(): boolean {
+		if (_.isString(this.value) && ['true', 'false'].includes(this.value.toLowerCase())) {
+			return this.value.toLowerCase() === 'true';
+		}
+
+		return this.value === true;
+	}
+
+	int(): number {
+		return parseInt(this.value);
+	}
+
+	float(): number {
+		return parseFloat(this.value);
+	}
+
+	null(): null {
+		if (this.value === null || this.value === 'null') {
+			return null;
+		}
+		return undefined;
+	}
+}
+
+export function Override(data: OverrideInterface): OverrideValue {
 	if(!data.env && !data.value){
 		throw new Error('Override expects a value and environment variable name')
 	}
@@ -17,7 +55,7 @@ export function Override(data: OverrideInterface){
 
 	const env = process.env[envName];
 
-	return data.forceEnv ? env : (env || data.value);
+	return new OverrideValue(data.forceEnv ? env : (env || data.value));
 }
 
 
@@ -25,31 +63,32 @@ export interface ConfigInterface {
 	[key: string]: OverrideInterface | object | string | boolean | number;
 }
 
-export class Config {
-	public config: ConfigInterface = {};
+export class Config<C> {
+	public config: C;
 
-	constructor(config: ConfigInterface) {
+	constructor(config: C) {
 		this.config = config;
 	}
 
-	parseForEnv(environment: string){
-		return _.merge({}, this.config);
+	parse(): C {
+		return this.config;
 	}
 }
 
-export type ConfigFn = (o: OverrideFn) => Config;
+export type ConfigFn<C> = (o: OverrideFn) => Config<C>;
 
 export interface ComposerOptions {
 	envPrefix: string;
 }
 
-export default class Composer {
+export default class Composer<ConfigShape> {
 	public config: ConfigInterface = {};
 	public envs: string[] = [];
 	public options: ComposerOptions;
 	public env: string;
 
 	constructor(options: ComposerOptions) {
+		this.config = {};
 		this.env = (process.env.NODE_ENV || 'development');
 		this.config.env = this.env;
 
@@ -58,13 +97,13 @@ export default class Composer {
 		});
 	}
 
-	setConfig(fn: ConfigFn, name: string) {
+	setConfig<C>(fn: ConfigFn<C>, name: string) {
 		const config = fn(Override.bind(this));
-		this.config[_.camelCase(name)] = config.parseForEnv(this.env);
+		this.config[_.camelCase(name)] = config.parse();
 	}
 
-	getConfig(){
-		return this.config;
+	getConfig(): ConfigShape & ConfigInterface {
+		return <ConfigShape & ConfigInterface>this.config;
 	}
 
 	getRequiredEnvs(){

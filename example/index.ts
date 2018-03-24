@@ -1,15 +1,20 @@
 import Composer from '../src';
-import example from './exampleConfig';
+import example, { ExampleConfigShape } from './exampleConfig';
 
 
-const C = new Composer({
+
+interface ConfigShape {
+	example: ExampleConfigShape;
+}
+
+const C = new Composer<ConfigShape>({
 	envPrefix: 'TEST_'
 });
 
 process.env['TEST_HOSTNAME_VAR'] = 'test';
 
-C.setConfig(example, 'example');
+C.setConfig<ExampleConfigShape>(example, 'example');
 
 
 console.log(C.getConfig());
-console.log(C.getRequiredEnvs());
+

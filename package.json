@@ -1,8 +1,9 @@
 {
-  "name": "@seanmcgary/config",
-  "version": "1.0.0",
+  "name": "config-composer",
+  "version": "4.0.0",
   "description": "compose your config",
-  "main": "index.js",
+  "main": "dist/src/index.js",
+  "typings": "dist/src/index.d.ts",
   "scripts": {
     "test": "NODE_ENV=test mocha test"
   },
