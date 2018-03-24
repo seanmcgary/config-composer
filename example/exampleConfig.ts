@@ -11,6 +11,8 @@ export default (override: OverrideFn): Config<ExampleConfigShape> => {
 			value: 'localhost',
 			env: 'HOSTNAME_VAR'
 		}).string(),
-		port: 8080
+		port: override({
+			env: 'PORT_VAR'
+		}).int()
 	});
 };

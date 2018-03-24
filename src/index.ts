@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 
 export interface OverrideInterface {
-	env: string;
-	value: string | object | boolean | number,
+	env?: string;
+	value?: string | object | boolean | number,
 	forceEnv?: boolean;
 }
 
