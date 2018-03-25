@@ -15,8 +15,8 @@ export class OverrideValue {
 	}
 
 	string(): string {
-		if (typeof this.value.toString === 'function') {
-			return this.value.toString();
+		if (_.isString(this.value)) {
+			return this.value;
 		}
 
 		return `${this.value}`;
